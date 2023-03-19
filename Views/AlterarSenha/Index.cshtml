@@ -1,0 +1,65 @@
+﻿@model AlterarSenhaModel
+
+@{
+    ViewData["Title"] = "Alterar Senha";
+}
+
+<div class="text-center">
+    <br>
+    <h2>@ViewData["Title"]</h2>
+    <br />
+</div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+    <br />
+}
+
+<form asp-controller="AlterarSenha" asp-action="Alterar" method="post">
+
+    <center>
+        <div class="form-group" style="width: 300px; text-align: left">
+            <label for="senhaAtual">Senha atual</label>
+            <input type="password" asp-for="SenhaAtual" class="form-control" placeholder="Digite a senha atual">
+            @Html.ValidationMessageFor(x => x.SenhaAtual)
+        </div>
+        <br />
+        <div class="form-group" style="width: 300px; text-align: left">
+            <label for="novaSenha">Nova senha</label>
+            <input type="password" asp-for="NovaSenha" class="form-control" placeholder="Digite a nova senha">
+            @Html.ValidationMessageFor(x => x.NovaSenha)
+        </div>
+        <br />
+        <div class="form-group" style="width: 300px; text-align: left">
+            <label for="confirmarNovaSenha">Confirmar nova senha</label>
+            <input type="password" asp-for="ConfirmarNovaSenha" class="form-control" placeholder="Confirme a nova senha">
+            @Html.ValidationMessageFor(x => x.ConfirmarNovaSenha)
+        </div>
+    </center>
+
+    <br />
+    <center>
+        <button id="click" type="submit" class="btn btn-primary">Alterar</button>&nbsp;&nbsp;
+        <a class="btn btn-secondary" role="button" asp-controller="Home" asp-action="Index">Voltar</a>
+    </center>
+
+    <script>
+        $('#click').on('click', function () {
+
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Senha atualizada!',
+                showConfirmButton: false,
+                timer: 9999999988888,
+            })
+        })
+    </script>
+</form>
+

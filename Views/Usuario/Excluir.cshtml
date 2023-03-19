@@ -1,0 +1,31 @@
+﻿@model UsuarioModel
+@{
+    ViewData["Title"] = "Excluir Usuários";
+}
+
+<div class="text-center">
+    <br>
+    <h3>Tem certeza que deseja excluir <h1> <font color="red"> @Model.Nome? </font> </h1>  </h3>
+    <br />
+</div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<center>
+    <a id="click" class="btn btn-danger" role="button" asp-controller="Usuario" asp-route-id="@Model.Id" asp-action="Apagar">Excluir</a>&nbsp;&nbsp;
+    <a class="btn btn-secondary" role="button" asp-controller="Usuario" asp-action="Index">Cancelar</a>
+</center>
+<script>
+    $('#click').on('click', function () {
+
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Usuário excluído!',
+            showConfirmButton: false,
+            timer: 9999999988888,
+        })
+    })
+</script>
+
+

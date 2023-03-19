@@ -1,0 +1,53 @@
+﻿@model LoginModel
+@{
+    Layout = "_Layout_Login";
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="text-center">
+    <br>
+    <h3>Login</h3>
+    <br />
+</div>
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" arial-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+    <br />
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+    <br />
+}
+<form asp-controller="Login" asp-action="Entrar" method="post">
+    <center>
+        <div class="mb-3" style="width: 300px; text-align: left">
+            <label for="login" class="form-label">Login</label>
+            <input type="Text" asp-for="Login" class="form-control" id="Login">
+            @Html.ValidationMessageFor(x => x.Login)
+        </div>
+        <div class="mb-3" style="width: 300px; text-align: left">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" asp-for="Senha" class="form-control" id="senha">
+            @Html.ValidationMessageFor(x => x.Senha)
+        </div>
+    </center>
+
+    <p class="mb-4 text-sm-center mx-auto">
+        Esqueceu a senha?
+        <a asp-controller="Login" asp-action="RedefinirSenha" class="text-primary text-gradient font-weight-bold">Redefinir senha</a>
+    </p>
+    <br />
+    <center>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </center>
+
+</form>

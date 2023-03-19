@@ -1,0 +1,56 @@
+﻿@model ContatoModel
+@{
+    ViewData["Title"] = "Cadastrar Contatos";
+}
+
+<div class="text-center">
+    <br>
+    <h2>Cadastrar contato</h2>
+    <br />
+    <br />
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <form asp-controller="Contato" asp-action="Criar" method="post">
+        <center>
+            <div style="width: 300px; text-align: left" class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome">
+                @Html.ValidationMessageFor(x => x.Nome)
+            </div>
+            <div style="width: 300px; text-align: left" class="form-group">
+                <label for="email">Email</label>
+                <input type="text" asp-for="Email" class="form-control" placeholder="Digite o email">
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div style="width: 300px; text-align: left" class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" asp-for="Telefone" class="form-control" placeholder="Digite o telefone">
+                @Html.ValidationMessageFor(x => x.Telefone)
+            </div>
+        </center>
+        <br />
+        <center>
+            <button id="click" type="submit" class="btn btn-primary">Adicionar</button>&nbsp;&nbsp;
+            <a class="btn btn-secondary" role="button" asp-controller="Contato" asp-action="Index">Voltar</a>
+        </center>
+        <script>
+            $('#click').on('click', function () {
+
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Contato salvo!',
+                    showConfirmButton: false,
+                    timer: 9999999988888,
+                })
+            })
+        </script>
+    </form>
+
+
+
+

@@ -1,0 +1,65 @@
+﻿@model UsuarioModel
+@using CadastroContatos.Enums
+@{
+    ViewData["Title"] = "Editar Usuários";
+}
+
+<div class="text-center">
+    <br>
+    <h2>Editar</h2>
+    <br />
+</div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<form asp-controller="Usuario" asp-action="Editar" method="post">
+
+    <center>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group" style="width: 300px; text-align: left">
+            <label for="nome">Nome</label>
+            <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome">
+            @Html.ValidationMessageFor(x => x.Nome)
+        </div>
+        <div class="form-group" style="width: 300px; text-align: left">
+            <label for="login">Login</label>
+            <input type="text" asp-for="Login" class="form-control" placeholder="Digite o login">
+            @Html.ValidationMessageFor(x => x.Login)
+        </div>
+        <div class="form-group" style="width: 300px; text-align: left">
+            <label for="email">Email</label>
+            <input type="text" asp-for="Email" class="form-control" placeholder="Digite o email">
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+        <div class="form-group" style="width: 300px; text-align: left">
+            <label for="perfil">Perfil</label>
+            <br />
+            <select asp-for="Perfil" class="form-control">
+                <option value="">Selecionar</option>
+                <option value="@PerfilEnum.Administrador">Administrador</option>
+                <option value="@PerfilEnum.Padrao">Padrão</option>
+            </select>
+            @Html.ValidationMessageFor(x => x.Perfil)
+        </div>
+    </center>
+    
+
+    <br />
+    <center>
+        <button id="click" type="submit" class="btn btn-primary">Alterar</button>&nbsp;&nbsp;
+        <a class="btn btn-secondary" role="button" asp-controller="Usuario" asp-action="Index">Voltar</a>
+    </center>
+
+    <script>
+        $('#click').on('click', function () {
+
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Usuário atualizado!',
+                showConfirmButton: false,
+                timer: 9999999988888,
+            })
+        })
+    </script>
+</form>
